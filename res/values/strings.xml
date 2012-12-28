@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bretto W-Control</string>
+    <string name="tab_home">Inicio</string>
+    <string name="tab_alarm">Alarma</string>
+    <string name="tab_system">Sistema</string>
+
+    <!-- Wizard -->
+    <string name="wizard_first_title">Paso 1 de 3: Contraseña</string>
+    <string name="wizard_second_title">Paso 2 de 3: Teléfono</string>
+    <string name="wizard_third_title">Paso 3 de 3: Receptor</string>
+    <string name="wizard_fourth_title">¡Importante!</string>
+    <string name="wizard_password_description">Por tu seguridad, es necesario que configures una contraseña de acceso a la aplicación. Puedes editarla en cualquier momento desde Ajustes. \n\n</string>
+    <string name="wizard_password">Contraseña</string>
+    <string name="wizard_password_again">Repite contraseña</string>
+    <string name="wizard_number_description">Define un número de teléfono para la alarma. Puedes editarlo en cualquier momento desde Ajustes. \n\n</string>
+	<string name="wizard_devices_description">Define al menos un número de teléfono receptor. Puedes editarlos en cualquier momento desde la pestaña Alarma. \n\n</string>
+	<string name="wizard_save_description">Te recomendamos tener siempre activado el modo ahorro de energía.</string>
+	
+    <!-- Ask for app password -->
+    <string name="ask_pass_title">Contraseña</string>
+    <string name="ask_pass">Introduce contraseña de acceso</string>
+
+    <!-- Buttons in Home tab -->
+    <string name="home_assemble_on">Armar</string>
+    <string name="home_assemble_off">Desarmar</string>
+    <string name="home_sensor">Sensor golpes</string>
+    <string name="home_save">Ahorro energía</string>
+    <string name="home_immobilize">Motor</string>
+    <string name="home_siren">Sirena</string>
+    <string name="home_location">Localización</string>
+
+    <!-- URL banner Bretto -->
+    <string name="url_banner">http://www.bretto.es</string>
+
+    <!-- Set Devices command -->
+    <string name="set_number_a">Número A</string>
+    <string name="set_number_b">Número B</string>
+    <string name="set_number_c">Número C</string>
+
+    <!-- Sensibility command -->
+    <string name="sensibility">Sensibilidad</string>
+
+    <!-- Buttons in Alarm tab -->
+    <string name="alarm_call">Llamar</string>
+    <string name="alarm_imei">Obtener IMEI</string>
+    <string name="alarm_set_devices">Configurar móviles</string>
+    <string name="alarm_get_devices">Comprobar móviles</string>
+    <string name="alarm_sensibility">Ajustar sensibilidad</string>
+
+    <!-- Buttons in System tab -->
+    <string name="system_state">Estado de la alarma</string>
+    <string name="system_reset">Reseteo parcial</string>
+    <string name="system_hard_reset">Reseteo completo</string>
+    
+    <!-- Confirmation alerts -->
+    <string name="confirmation_default">\n¿Estás seguro de esta operación? \n</string>
+    <string name="confirmation_reset">\n¿Estás seguro? Esta operación no se puede deshacer.\n</string>
+    <string name="confirmation_hard_reset">\n¿Estás seguro? Esta operación no se puede deshacer. Tendrás que configurar de nuevo la aplicación. \n</string>
+
+    <!-- Options in menu -->
+    <string name="menu_settings">Ajustes</string>
+    <string name="menu_about">Acerca de</string>
+
+    <!-- Settings -->
+    <string name="sett_title">Ajustes</string>
+    <string name="sett_app">Aplicación</string>
+    <string name="sett_app_pass_title">Contraseña</string>
+    <string name="sett_app_pass_description">Contraseña de acceso a la aplicación</string>
+    <string name="sett_app_pass_switch_title">Pedir contraseña</string>
+    <string name="sett_app_pass_switch_description">Pedir la contraseña al abrir</string>
+    <string name="sett_vehicle">Alarma</string>
+    <string name="sett_vehicle_num_title">Número</string>
+    <string name="sett_vehicle_num_description">Número de móvil de la alarma</string>
+    <string name="sett_vehicle_pass_title">Contraseña</string>
+    <string name="sett_vehicle_pass_description">Contraseña de la alarma</string>
+    <string name="sett_old_pass">Antigua contraseña</string>
+    <string name="sett_new_pass">Contraseña</string>
+    <string name="sett_new_pass_again">Repite contraseña</string>
+    <string name="sett_new_number">Número</string>
+
+    <!--  -->
+    <string name="command_assemble_on">Armar</string>
+    <string name="command_assemble_off">Desarmar</string>
+    <string name="command_immobilize_on">Activar inmovilizador</string>
+    <string name="command_immobilize_off">Desactivar inmovilizador</string>
+
+    <!-- OK/Cancel action -->
+    <string name="button_ok">Aceptar</string>
+    <string name="button_cancel">Cancelar</string>
+
+    <!-- Enable/disable command -->
+    <string name="enable">Activar</string>
+    <string name="disable">Desactivar</string>
+
+    <!-- Location command -->
+    <string name="location_gprmc">Datos GPRMC</string>
+    <string name="location_gps">Datos GPS</string>
+    <string name="location_web">Enlace a mapa web</string>
+
+    <!-- Error messages -->
+    <string name="error_title">Error</string>
+    <string name="error_wrong_password">La contraseña no es correcta.</string>
+    <string name="error_password_mismatch">La contraseña no coincide.</string>
+    <string name="error_settings_number">Debes definir en Ajustes un número de teléfono para la alarma.</string>
+    <string name="error_settings_number_before">Debes definir antes un número de teléfono para la alarma.</string>
+    <string name="error_sms">Error, no se ha podido enviar el comando</string>
+    
+    <!-- Success messages -->
+    <string name="success_sms">Comando enviado por SMS</string>
+
+    <!-- Settings code values -->
+    <string name="sett_key_app">sett_key_app</string>
+    <string name="sett_key_app_pass">sett_key_app_pass</string>
+    <string name="sett_key_app_pass_switch">sett_key_app_pass_switch</string>
+    <string name="sett_key_vehicle">sett_key_vehicle</string>
+    <string name="sett_key_vehicle_number">sett_key_vehicle_number</string>
+    <string name="sett_key_vehicle_pass">sett_key_vehicle_pass</string>
+
+    <!-- Default code value -->
+    <string name="default_pass">1234</string>
+
+    <!-- About -->
+    <string name="about_title">Acerca de Bretto W-Control</string>
+    <string name="about_name">Bretto, todos los derechos reservados</string>
+    <string name="about_email">contacto@bretto.es</string>
+    <string name="about_version">Bretto W-Control v1.0.0</string>
+
+</resources>

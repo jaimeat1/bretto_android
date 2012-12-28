@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory 
+        android:title="@string/sett_app"
+        android:key="@string/sett_key_app">
+        <Preference 
+            android:key="@string/sett_key_app_pass"
+            android:summary="@string/sett_app_pass_description"
+            android:title="@string/sett_app_pass_title"/>
+        <CheckBoxPreference
+            android:key="@string/sett_key_app_pass_switch"
+            android:summary="@string/sett_app_pass_switch_description"
+            android:title="@string/sett_app_pass_switch_title"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory 
+        android:title="@string/sett_vehicle"
+        android:key="pref_key_vehicle">
+        <Preference 
+            android:key="@string/sett_key_vehicle_number"
+            android:summary="@string/sett_vehicle_num_description"
+            android:title="@string/sett_vehicle_num_title"/>
+        <Preference 
+            android:key="@string/sett_key_vehicle_pass"
+            android:summary="@string/sett_vehicle_pass_description"
+            android:title="@string/sett_vehicle_pass_title"/>
+    </PreferenceCategory>
+</PreferenceScreen>

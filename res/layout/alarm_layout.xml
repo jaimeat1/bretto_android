@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center" >
+
+    <Button
+        android:id="@+id/callButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_state"
+        android:onClick="onCommandSelected"
+        android:text="@string/alarm_call"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/imeiButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_state"
+        android:onClick="onCommandSelected"
+        android:text="@string/alarm_imei"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/setDevicesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_state"
+        android:onClick="onCommandSelected"
+        android:text="@string/alarm_set_devices"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/getDevicesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_state"
+        android:onClick="onCommandSelected"
+        android:text="@string/alarm_get_devices"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/sensibilityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_state"
+        android:onClick="onCommandSelected"
+        android:text="@string/alarm_sensibility"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

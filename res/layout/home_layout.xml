@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+ 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal" 
+        android:layout_weight="2">
+
+        <Button
+            android:id="@+id/assembleOnButton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/assemble_on_state"
+            android:onClick="onCommandSelected"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/assembleOffButton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/assemble_off_state"
+            android:onClick="onCommandSelected"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="2" >
+
+        <Button
+            android:id="@+id/immobilizeButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/immobilize_state"
+            android:onClick="onCommandSelected"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/sirenButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/siren_state"
+            android:onClick="onCommandSelected"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal" 
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/bannerButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/banner"
+            android:onClick="onCommandSelected" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+    <Button
+        android:id="@+id/sensorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sensor_state"
+        android:onClick="onCommandSelected"
+        android:visibility="invisible" />
+    
+    <Button
+        android:id="@+id/locationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/location_state"
+        android:onClick="onCommandSelected"
+        android:visibility="invisible" />
+        
+     <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/save_state"
+        android:onClick="onCommandSelected"
+        android:visibility="invisible" />
+
+</RelativeLayout>

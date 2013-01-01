@@ -65,7 +65,7 @@ public class MainActivity extends TabCompatActivity {
 	public static final String PREFERENCES_WIZARD = "PREFERENCES_WIZARD";
 	
 	// Log constant
-	public static final String APP_TAG = "Brettowcontrol";
+	public static final String APP_TAG = "BrettoWControl";
 	
 	// Alert for app password
 	private AlertDialog mAlertPassword;

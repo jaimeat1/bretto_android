@@ -16,12 +16,14 @@
 
 package com.provauto.bretto.wcontrol;
 
-import com.provauto.bretto.wcontrol.R;
 import com.provauto.bretto.wcontrol.fragments.AlarmFragment;
 import com.provauto.bretto.wcontrol.fragments.HomeFragment;
 import com.provauto.bretto.wcontrol.fragments.SystemFragment;
 import com.provauto.bretto.wcontrol.tab.*;
+import com.provauto.bretto.wcontrol.R;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -46,10 +48,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
 public class MainActivity extends TabCompatActivity {
 	
 	public static final String SMS_SENT = "SMS_SENT";
@@ -65,7 +69,7 @@ public class MainActivity extends TabCompatActivity {
 	public static final String PREFERENCES_WIZARD = "PREFERENCES_WIZARD";
 	
 	// Log constant
-	public static final String APP_TAG = "BrettoWControl";
+	public static final String APP_TAG = "BrettoXControl";
 	
 	// Alert for app password
 	private AlertDialog mAlertPassword;
@@ -80,7 +84,7 @@ public class MainActivity extends TabCompatActivity {
 	public BroadcastReceiver mBroadcastSMSReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive (Context context, Intent intent) {
-
+/*
         	// Listen to SMS sent event only
         	if (intent.getAction().compareTo(SMS_SENT) == 0) {
         	
@@ -101,8 +105,7 @@ public class MainActivity extends TabCompatActivity {
 	        	// SMS successfully sent
 	        	if (getResultCode() == Activity.RESULT_OK){
 	        		Toast.makeText(context, context.getResources().getString(R.string.success_sms), Toast.LENGTH_LONG).show();
-	
-/*
+*/	
 	        		// Show alert with command, debugging version
 	               	AlertDialog.Builder alert = new AlertDialog.Builder(context);
 	            	alert.setTitle("SMS Message");
@@ -112,14 +115,13 @@ public class MainActivity extends TabCompatActivity {
 	        			}
 	        		});
 	            	alert.show();
-*/
-	            	
+/*	            	
 	        	// Error sending SMS
 	        	}else{
 	        		Toast.makeText(context, context.getResources().getString(R.string.error_sms), Toast.LENGTH_LONG).show();
 	        	}
         	}
-        }
+*/        }
     };
 	
     @Override
@@ -157,15 +159,15 @@ public class MainActivity extends TabCompatActivity {
 	        editor.putString(PREFERENCES_PASSWORDALARM, getResources().getString(R.string.default_pass));
 	        editor.commit();
 		}
-/*
+		
         // Set preference values, debugging version
         SharedPreferences preferences = this.getSharedPreferences(APP_TAG, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(PREFERENCES_PASSWORDAPP, "1234");
         editor.putString(PREFERENCES_PASSWORDALARM, "aaaa");
-        editor.putString(PREFERENCES_NUMBER, "5554");
+        editor.putString(PREFERENCES_NUMBERALARM, "5554");
         editor.commit();
-*/
+
     }
     
     /**
@@ -332,12 +334,14 @@ public class MainActivity extends TabCompatActivity {
     	// First execution, ask for create new password
     	if (showWizard) {
     		
-    		showWizardFirstStep();
+    		// TODO: uncomment
+    		//showWizardFirstStep();
 		
 		// Ask for app password
     	} else if ((appPassword != null) && (mSameActivity == false) && (askPassword)){
     		
-    		askAppPassword(appPassword);
+    		// TODO: uncomment
+    		//askAppPassword(appPassword);
     	}
     	
     	// Use to ask for password or not
@@ -480,32 +484,34 @@ public class MainActivity extends TabCompatActivity {
     	case R.id.assembleOnButton:
     		dispatchCommand(translateButtonToCommand(R.id.assembleOnButton, -1), null);
     		break;
-    	case R.id.sensorButton:
-    		askForOptions(getResources().getString(R.string.home_sensor), 
+    	case R.id.climateButton:
+    		askForOptions(getResources().getString(R.string.home_climate), 
     				new String[ ] {getResources().getString(R.string.enable), getResources().getString(R.string.disable)}, 
-    				R.id.sensorButton);
+    				R.id.climateButton);
     		break;
-    	case R.id.saveButton:
-    		askForOptions(getResources().getString(R.string.home_save), 
+    	case R.id.engineButton:
+    		askForOptions(getResources().getString(R.string.home_engine), 
     				new String[ ] {getResources().getString(R.string.enable), getResources().getString(R.string.disable)}, 
-    				R.id.saveButton);
+    				R.id.engineButton);
     		break;
-    	case R.id.immobilizeButton:
-    		askForOptions(getResources().getString(R.string.home_immobilize), 
+    	case R.id.ignitionButton:
+    		askForOptions(getResources().getString(R.string.home_ignition), 
     				new String[ ] {getResources().getString(R.string.enable), getResources().getString(R.string.disable)}, 
-    				R.id.immobilizeButton);
-    		break;
-    	case R.id.sirenButton:
-    		askForOptions(getResources().getString(R.string.home_siren), 
-    				new String[ ] {getResources().getString(R.string.enable), getResources().getString(R.string.disable)}, 
-    				R.id.sirenButton);
+    				R.id.ignitionButton);
     		break;
     	case R.id.locationButton:
     		askForOptions(getResources().getString(R.string.home_location), 
     				new String[ ] {getResources().getString(R.string.location_gprmc), 
-    			getResources().getString(R.string.location_gps), 
-    			getResources().getString(R.string.location_web)}, 
+    							   getResources().getString(R.string.location_gps),
+    							   getResources().getString(R.string.location_gpsm),
+    							   getResources().getString(R.string.location_parking),
+    							   getResources().getString(R.string.location_web)},
     				R.id.locationButton);
+    		break;
+    	case R.id.sensorButton:
+    		askForOptions(getResources().getString(R.string.home_sensor), 
+    				new String[ ] {getResources().getString(R.string.enable), getResources().getString(R.string.disable)}, 
+    				R.id.sensorButton);
     		break;
     	case R.id.callButton:
     		askForNumber(getResources().getString(R.string.alarm_call), R.id.callButton);
@@ -513,23 +519,30 @@ public class MainActivity extends TabCompatActivity {
     	case R.id.imeiButton:
     		dispatchCommand(translateButtonToCommand(R.id.imeiButton, -1), null);
     		break;
-    	case R.id.resetButton:
-    		askForConfirmation(getResources().getString(R.string.system_reset), R.id.resetButton, -1);
-    		break;
-    	case R.id.hardResetButton:
-    		askForConfirmation(getResources().getString(R.string.system_hard_reset), R.id.hardResetButton, -1);
-    		break;
     	case R.id.setDevicesButton:
     		askForDevices(R.id.setDevicesButton, false);
     		break;
     	case R.id.getDevicesButton:
     		dispatchCommand(translateButtonToCommand(R.id.getDevicesButton, -1), null);
     		break;
-    	case R.id.sensibilityButton:
-    		askForSensibility(getResources().getString(R.string.alarm_sensibility), R.id.sensibilityButton);
+    	case R.id.automaticButton:
+    		askForOptions(getResources().getString(R.string.alarm_automatic), 
+    				new String[ ] {getResources().getString(R.string.enable), getResources().getString(R.string.disable)}, 
+    				R.id.automaticButton);
+    		break;
+    	case R.id.speedButton:
+    		askForOptions(getResources().getString(R.string.alarm_speed), 
+    				new String[ ] {getResources().getString(R.string.enable), getResources().getString(R.string.disable)}, 
+    				R.id.speedButton);
     		break;
     	case R.id.stateButton:
     		dispatchCommand(translateButtonToCommand(R.id.stateButton, -1), null);
+    		break;
+    	case R.id.resetButton:
+    		askForConfirmation(getResources().getString(R.string.system_reset), R.id.resetButton, -1);
+    		break;
+    	case R.id.hardResetButton:
+    		askForConfirmation(getResources().getString(R.string.system_hard_reset), R.id.hardResetButton, -1);
     		break;
     	case R.id.bannerButton:
     		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_banner)));
@@ -558,6 +571,27 @@ public class MainActivity extends TabCompatActivity {
     	case R.id.assembleOnButton:
     		command = Communicator.COMMAND_ASSEMBLEON;
     		break;
+    	case R.id.climateButton:
+    		if (optionSelected == 0){
+    			command = Communicator.COMMAND_CLIMATEON;
+    		} else {
+    			command = Communicator.COMMAND_CLIMATEOFF;
+    		}
+    		break;
+    	case R.id.engineButton:
+    		if (optionSelected == 0){
+    			command = Communicator.COMMAND_ENGINEON;
+    		} else {
+    			command = Communicator.COMMAND_ENGINEOFF;
+    		}
+    		break;
+    	case R.id.ignitionButton:
+    		if (optionSelected == 0){
+    			command = Communicator.COMMAND_IGNITIONOFF;
+    		} else {
+    			command = Communicator.COMMAND_IGNITIONON;    			
+    		}
+    		break;
     	case R.id.sensorButton:
     		if (optionSelected == 0){
         		command = Communicator.COMMAND_SENSORON;
@@ -565,33 +599,16 @@ public class MainActivity extends TabCompatActivity {
         		command = Communicator.COMMAND_SENSOROFF;
     		}
     		break;
-    	case R.id.saveButton:
-       		if (optionSelected == 0){
-        		command = Communicator.COMMAND_SAVEON;
-    		}else{
-        		command = Communicator.COMMAND_SAVEOFF;
-    		}
-    		break;
-    	case R.id.immobilizeButton:
-       		if (optionSelected == 0){
-       			command = Communicator.COMMAND_IMMOBILIZEON;
-    		} else {
-        		command = Communicator.COMMAND_IMMOBILIZEOFF;
-    		}
-    		break;
-    	case R.id.sirenButton:
-       		if (optionSelected == 0){
-        		command = Communicator.COMMAND_SIRENON;
-    		}else{
-        		command = Communicator.COMMAND_SIRENOFF;
-    		}
-    		break;
     	case R.id.locationButton:
-       		if (optionSelected == 0){
+       		if (optionSelected == 0) {
         		command = Communicator.COMMAND_LOCATIONGPRMC;
-    		}else if (optionSelected == 1){
+    		}else if (optionSelected == 1) {
         		command = Communicator.COMMAND_LOCATIONGPSD;
-    		}else{
+    		} else if (optionSelected == 2) {
+    			command = Communicator.COMMAND_LOCATIONGPSM;
+    		} else if (optionSelected == 3) {
+    			command = Communicator.COMMAND_LOCATIONPARKING;
+    		} else {
     			command = Communicator.COMMAND_LOCATIONWEB;
     		}
     		break;
@@ -601,26 +618,39 @@ public class MainActivity extends TabCompatActivity {
     	case R.id.imeiButton:
     		command = Communicator.COMMAND_IMEI;
     		break;
-    	case R.id.resetButton:
-    		command = Communicator.COMMAND_RESET;
-    		break;
-    	case R.id.hardResetButton:
-    		command = Communicator.COMMAND_HARDRESET;
-    		break;
     	case R.id.setDevicesButton:
     		command = Communicator.COMMAND_SETDEVICES;
     		break;
     	case R.id.getDevicesButton:
     		command = Communicator.COMMAND_GETDEVICES;
     		break;
-    	case R.id.sensibilityButton:
-    		command = Communicator.COMMAND_SENSIBILITY;
+    	case R.id.automaticButton:
+    		if (optionSelected == 0){
+    			command = Communicator.COMMAND_AUTOMATICON;
+    		} else {
+    			command = Communicator.COMMAND_AUTOMATICOFF;
+    		}
+    		break;
+    	case R.id.speedButton:
+    		if (optionSelected == 0){
+    			command = Communicator.COMMAND_SPEEDON;
+    		} else {
+    			command = Communicator.COMMAND_SPEEDOFF;
+    		}
     		break;
     	case R.id.stateButton:
     		command = Communicator.COMMAND_STATE;
     		break;
+    	case R.id.resetButton:
+    		command = Communicator.COMMAND_RESET;
+    		break;
+    	case R.id.hardResetButton:
+    		command = Communicator.COMMAND_HARDRESET;
+    		break;
+    	default:
+    		break;
 		}
-		
+
 		return command;
     }
 
@@ -674,17 +704,23 @@ public class MainActivity extends TabCompatActivity {
     public void askForOptions(final String title, String[] options, final int buttonId){
     	AlertDialog.Builder alert = new AlertDialog.Builder(this);
     	alert.setTitle(title);
+    	
     	alert.setItems(options, new DialogInterface.OnClickListener() {
-    		public void onClick(DialogInterface d, int choice) {
-    			String[] arg = null;
-    			
-    			if (buttonId == R.id.immobilizeButton) {
-    				askForConfirmation(title, R.id.immobilizeButton, choice);
-    			} else {    			
-    				dispatchCommand(translateButtonToCommand(buttonId, choice), arg);
-    			}
+    		
+    		public void onClick(DialogInterface d, int choice) {  			
+    			if ((choice == 0) && (buttonId == R.id.climateButton)) {   				
+    				askForTime(getResources().getString(R.string.home_climate), buttonId);   				
+    			} else if ((choice == 0) && (buttonId == R.id.engineButton)) {   				
+    				askForTime(getResources().getString(R.string.home_engine), buttonId);   				
+    			} else if ((choice == 0) && (buttonId == R.id.speedButton)) {   				
+    				askForTimeAndSpeed(getResources().getString(R.string.alarm_speed), buttonId);   				
+    			} else {
+    				String[] arg = null;  			
+        			dispatchCommand(translateButtonToCommand(buttonId, choice), arg);
+    			}	
     		}
     	});
+    	
     	alert.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				
@@ -918,6 +954,12 @@ public class MainActivity extends TabCompatActivity {
 		alert.show();
     }
     
+    /**
+     * 
+     * @param title
+     * @param buttonId
+     * @param choice
+     */
     private void askForConfirmation(String title, final int buttonId, final int choice) {
     	
     	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -934,7 +976,6 @@ public class MainActivity extends TabCompatActivity {
     	case R.id.hardResetButton:
     		textView.setText(getResources().getString(R.string.confirmation_hard_reset));
     		break;
-    	case R.id.immobilizeButton:
     	default:
     		textView.setText(getResources().getString(R.string.confirmation_default));
     		break;
@@ -943,11 +984,7 @@ public class MainActivity extends TabCompatActivity {
 		// OK button
 		builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {	
-				if (buttonId == R.id.immobilizeButton){
-					dispatchCommand(translateButtonToCommand(buttonId, choice), null);
-				} else {
-					dispatchCommand(translateButtonToCommand(buttonId, -1), null);
-				}
+				dispatchCommand(translateButtonToCommand(buttonId, -1), null);
 			}
 		});
 
@@ -957,6 +994,90 @@ public class MainActivity extends TabCompatActivity {
 			}
 		});
 		
+		final AlertDialog alert = builder.create();
+		alert.show();
+    }
+    
+   /**
+    * Shows a alert dialog to ask for a time value
+    * @param title
+    * @param buttonId
+    */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private void askForTime(String title, final int buttonId) {
+
+    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setTitle(title);
+    	final View view = LayoutInflater.from(this).inflate(R.layout.alarm_time_layout, null);
+		builder.setView(view);
+		
+		TextView textView = (TextView) view.findViewById(R.id.title_time);
+		
+		if (R.id.climateButton == buttonId) {
+			textView.setText(this.getResources().getString(R.string.setClimate));
+		} else if (R.id.engineButton == buttonId) {
+			textView.setText(this.getResources().getString(R.string.setEngine));
+		}
+		
+		final NumberPicker picker = (NumberPicker) view.findViewById(R.id.time_picker);
+		picker.setMinValue(0);
+		picker.setMaxValue(99);
+		
+		// OK button
+		builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {	
+				Integer value = picker.getValue();
+				String[] arg = {value.toString()};
+    			dispatchCommand(translateButtonToCommand(buttonId, 0), arg);
+			}
+		});
+
+		// Cancel button
+		builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+			}
+		});
+		
+		final AlertDialog alert = builder.create();
+		alert.show();
+    }
+    
+    /**
+     * Shows a alert dialog to ask for a time and speed value
+     * @param title
+     * @param buttonId
+     */
+    private void askForTimeAndSpeed(String title, final int buttonId) {
+    	
+    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setTitle(title);
+    	final View view = LayoutInflater.from(this).inflate(R.layout.alarm_time_speed_layout, null);
+		builder.setView(view);
+		
+		final NumberPicker speedPicker = (NumberPicker) view.findViewById(R.id.speed_picker);
+		speedPicker.setMinValue(20);
+		speedPicker.setMaxValue(999);
+		
+		final NumberPicker timePicker = (NumberPicker) view.findViewById(R.id.time_speed_picker);
+		timePicker.setMinValue(0);
+		timePicker.setMaxValue(99);
+		
+		// OK button
+		builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {	
+				Integer speedValue = speedPicker.getValue();
+				Integer timeValue = timePicker.getValue();				
+				String[] arg = {speedValue.toString(), timeValue.toString()};				
+    			dispatchCommand(translateButtonToCommand(buttonId, 0), arg);
+			}
+		});
+
+		// Cancel button
+		builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+			}
+		});
+    	
 		final AlertDialog alert = builder.create();
 		alert.show();
     }

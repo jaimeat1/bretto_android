@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -39,18 +39,18 @@
         android:layout_weight="2" >
 
         <Button
-            android:id="@+id/immobilizeButton"
+            android:id="@+id/locationButton"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/immobilize_state"
+            android:background="@drawable/location_state"
             android:onClick="onCommandSelected"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/sirenButton"
+            android:id="@+id/sensorButton"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/siren_state"
+            android:background="@drawable/sensor_state"
             android:onClick="onCommandSelected"
             android:layout_weight="1" />
 
@@ -72,28 +72,28 @@
     </LinearLayout>
 
 </LinearLayout>
-
+ 
     <Button
-        android:id="@+id/sensorButton"
+        android:id="@+id/climateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/sensor_state"
+        android:background="@drawable/climate_state"
         android:onClick="onCommandSelected"
         android:visibility="invisible" />
     
     <Button
-        android:id="@+id/locationButton"
+        android:id="@+id/engineButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/location_state"
+        android:background="@drawable/engine_state"
         android:onClick="onCommandSelected"
         android:visibility="invisible" />
         
      <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/ignitionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/save_state"
+        android:background="@drawable/ignition_state"
         android:onClick="onCommandSelected"
         android:visibility="invisible" />
 

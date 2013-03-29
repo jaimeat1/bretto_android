@@ -40,14 +40,23 @@
         android:onClick="onCommandSelected"
         android:text="@string/alarm_get_devices"
         android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/sensibilityButton"
+    
+        <Button
+        android:id="@+id/automaticButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_state"
         android:onClick="onCommandSelected"
-        android:text="@string/alarm_sensibility"
+        android:text="@string/alarm_automatic"
+        android:textColor="@android:color/white" />
+    
+    <Button
+        android:id="@+id/speedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_state"
+        android:onClick="onCommandSelected"
+        android:text="@string/alarm_speed"
         android:textColor="@android:color/white" />
 
 </LinearLayout>

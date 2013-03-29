@@ -43,9 +43,9 @@ public class HomeFragment extends Fragment {
 				@Override
 				public void onGlobalLayout() {
 					
-					View sensorBtn = myFragment.getView().findViewById(R.id.sensorButton);
-					View locationBtn = myFragment.getView().findViewById(R.id.locationButton);
-					View saveBtn = myFragment.getView().findViewById(R.id.saveButton);
+					View climateBtn = myFragment.getView().findViewById(R.id.climateButton);
+					View engineBtn = myFragment.getView().findViewById(R.id.engineButton);
+					View ignitionBtn = myFragment.getView().findViewById(R.id.ignitionButton);
 					
 					// Second time onGlobalLayout() is called, remove listener
 					// Avoid a strange behavior laying these buttons, they appear in the corner before be laid properly
@@ -53,9 +53,9 @@ public class HomeFragment extends Fragment {
 					if (mLaid){
 						// make sure it is not called anymore
 						myFragment.getView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
-						sensorBtn.setVisibility(View.VISIBLE);
-						locationBtn.setVisibility(View.VISIBLE);
-						saveBtn.setVisibility(View.VISIBLE);
+						climateBtn.setVisibility(View.VISIBLE);
+						engineBtn.setVisibility(View.VISIBLE);
+						ignitionBtn.setVisibility(View.VISIBLE);
 						mLaid = false;
 						return;
 					}
@@ -108,33 +108,33 @@ public class HomeFragment extends Fragment {
 					View assembleOn = myFragment.getView().findViewById(R.id.assembleOnButton);
 					int heightAssemble = assembleOn.getHeight();
 
-					int heightSensor = sensorBtn.getHeight();
+					int heightClimate = climateBtn.getHeight();
 
-					int sensorBtnX = 0;
-					int sensorBtnY = ((heightAssemble * 2) - heightSensor) / 2;
+					int climateBtnX = 0;
+					int climateBtnY = ((heightAssemble * 2) - heightClimate) / 2;
 					
 					//int locationBtnX = sensorBtnX + sensorBtn.getWidth();
-					int locationBtnX = (screenWidth/2) - (locationBtn.getWidth()/2);
-					int locationBtnY = sensorBtnY;
+					int engineBtnX = (screenWidth/2) - (engineBtn.getWidth()/2);
+					int engineBtnY = climateBtnY;
 					
 					//int saveBtnX = locationBtnX + locationBtn.getWidth();
-					int saveBtnX = screenWidth - saveBtn.getWidth();
-					int saveBtnY = sensorBtnY;
+					int ignitionBtnX = screenWidth - ignitionBtn.getWidth();
+					int ignitionBtnY = climateBtnY;
 					
-					RelativeLayout.LayoutParams sensorParams = (RelativeLayout.LayoutParams) sensorBtn.getLayoutParams();
-					sensorParams.leftMargin = sensorBtnX;
-					sensorParams.topMargin = sensorBtnY;
-					sensorBtn.setLayoutParams(sensorParams);
+					RelativeLayout.LayoutParams climateParams = (RelativeLayout.LayoutParams) climateBtn.getLayoutParams();
+					climateParams.leftMargin = climateBtnX;
+					climateParams.topMargin = climateBtnY;
+					climateBtn.setLayoutParams(climateParams);
 					
-					RelativeLayout.LayoutParams locationParams = (RelativeLayout.LayoutParams) locationBtn.getLayoutParams();
-					locationParams.leftMargin = locationBtnX;
-					locationParams.topMargin = locationBtnY;
-					locationBtn.setLayoutParams(locationParams);
+					RelativeLayout.LayoutParams engineParams = (RelativeLayout.LayoutParams) engineBtn.getLayoutParams();
+					engineParams.leftMargin = engineBtnX;
+					engineParams.topMargin = engineBtnY;
+					engineBtn.setLayoutParams(engineParams);
 					
-					RelativeLayout.LayoutParams saveParams = (RelativeLayout.LayoutParams) saveBtn.getLayoutParams();
-					saveParams.leftMargin = saveBtnX;
-					saveParams.topMargin = saveBtnY;
-					saveBtn.setLayoutParams(saveParams);
+					RelativeLayout.LayoutParams ignitionParams = (RelativeLayout.LayoutParams) ignitionBtn.getLayoutParams();
+					ignitionParams.leftMargin = ignitionBtnX;
+					ignitionParams.topMargin = ignitionBtnY;
+					ignitionBtn.setLayoutParams(ignitionParams);
 					
 					mLaid = true;
 				}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Bretto W-Control</string>
+    <string name="app_name">Bretto X-Control</string>
     <string name="tab_home">Inicio</string>
     <string name="tab_alarm">Alarma</string>
     <string name="tab_system">Sistema</string>
@@ -25,12 +25,12 @@
     <!-- Buttons in Home tab -->
     <string name="home_assemble_on">Armar</string>
     <string name="home_assemble_off">Desarmar</string>
-    <string name="home_sensor">Sensor golpes</string>
-    <string name="home_save">Ahorro energía</string>
-    <string name="home_immobilize">Motor</string>
-    <string name="home_siren">Sirena</string>
+    <string name="home_climate">Climatización</string>
+    <string name="home_engine">Motor</string>
+    <string name="home_ignition">Corte de encendido</string>
     <string name="home_location">Localización</string>
-
+	<string name="home_sensor">Sensor golpes</string>
+    
     <!-- URL banner Bretto -->
     <string name="url_banner">http://www.bretto.es</string>
 
@@ -41,13 +41,26 @@
 
     <!-- Sensibility command -->
     <string name="sensibility">Sensibilidad</string>
+    
+    <!-- Climate command -->
+    <string name="setClimate">Seleccione el tiempo de funcionamiento del climatizador.</string>
+
+    <!-- Engine command -->
+    <string name="setEngine">Seleccione el tiempo de funcionamiento de motor.</string>
+    
+    <!-- Speed command -->
+    <string name="setSpeed">Seleccione el tiempo y velocidad para la alerta.</string>
+    
+    <string name="min">min</string>
+    <string name="kmh">km/h</string>
 
     <!-- Buttons in Alarm tab -->
     <string name="alarm_call">Llamar</string>
     <string name="alarm_imei">Obtener IMEI</string>
     <string name="alarm_set_devices">Configurar móviles</string>
     <string name="alarm_get_devices">Comprobar móviles</string>
-    <string name="alarm_sensibility">Ajustar sensibilidad</string>
+    <string name="alarm_automatic">Armado automático</string>
+    <string name="alarm_speed">Alarma velocidad</string>
 
     <!-- Buttons in System tab -->
     <string name="system_state">Estado de la alarma</string>
@@ -80,12 +93,6 @@
     <string name="sett_new_pass_again">Repite contraseña</string>
     <string name="sett_new_number">Número</string>
 
-    <!--  -->
-    <string name="command_assemble_on">Armar</string>
-    <string name="command_assemble_off">Desarmar</string>
-    <string name="command_immobilize_on">Activar inmovilizador</string>
-    <string name="command_immobilize_off">Desactivar inmovilizador</string>
-
     <!-- OK/Cancel action -->
     <string name="button_ok">Aceptar</string>
     <string name="button_cancel">Cancelar</string>
@@ -95,10 +102,12 @@
     <string name="disable">Desactivar</string>
 
     <!-- Location command -->
+    <string name="location_web">Enlace a mapa web</string>
     <string name="location_gprmc">Datos GPRMC</string>
     <string name="location_gps">Datos GPS</string>
-    <string name="location_web">Enlace a mapa web</string>
-
+    <string name="location_gpsm">Posición DDMMSS</string>
+    <string name="location_parking">Parking</string>
+    
     <!-- Error messages -->
     <string name="error_title">Error</string>
     <string name="error_wrong_password">La contraseña no es correcta.</string>
@@ -122,9 +131,9 @@
     <string name="default_pass">1234</string>
 
     <!-- About -->
-    <string name="about_title">Acerca de Bretto W-Control</string>
+    <string name="about_title">Acerca de Bretto X-Control</string>
     <string name="about_name">Bretto, todos los derechos reservados</string>
     <string name="about_email">contacto@bretto.es</string>
-    <string name="about_version">Bretto W-Control v1.0.0</string>
+    <string name="about_version">Bretto X-Control v1.0.0</string>
 
 </resources>

@@ -19,6 +19,7 @@ package com.provauto.bretto.wcontrol;
 import com.provauto.bretto.wcontrol.fragments.AlarmFragment;
 import com.provauto.bretto.wcontrol.fragments.HomeFragment;
 import com.provauto.bretto.wcontrol.fragments.SystemFragment;
+import com.provauto.bretto.wcontrol.numberpicker.NumberPickerDialog;
 import com.provauto.bretto.wcontrol.tab.*;
 import com.provauto.bretto.wcontrol.R;
 
@@ -34,6 +35,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -54,7 +56,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
-public class MainActivity extends TabCompatActivity {
+public class MainActivity extends TabCompatActivity implements NumberPickerDialog.OnNumberSetListener {
 	
 	public static final String SMS_SENT = "SMS_SENT";
 	public static final String SMS_DELIVERY = "SMS_DELIVERY";
@@ -79,6 +81,9 @@ public class MainActivity extends TabCompatActivity {
 	
 	// Message built by Communicator, for debugging
 	public static String mMessage;
+	
+	// ID for the current pressed button
+	public int mCurrentBtn;
 	
 	// Broadcast receiver to be notified when SMS is sent or delivered
 	public BroadcastReceiver mBroadcastSMSReceiver = new BroadcastReceiver() {
@@ -1006,40 +1011,75 @@ public class MainActivity extends TabCompatActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void askForTime(String title, final int buttonId) {
 
-    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setTitle(title);
-    	final View view = LayoutInflater.from(this).inflate(R.layout.alarm_time_layout, null);
-		builder.setView(view);
-		
-		TextView textView = (TextView) view.findViewById(R.id.title_time);
-		
-		if (R.id.climateButton == buttonId) {
-			textView.setText(this.getResources().getString(R.string.setClimate));
-		} else if (R.id.engineButton == buttonId) {
-			textView.setText(this.getResources().getString(R.string.setEngine));
-		}
-		
-		final NumberPicker picker = (NumberPicker) view.findViewById(R.id.time_picker);
-		picker.setMinValue(0);
-		picker.setMaxValue(99);
-		
-		// OK button
-		builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {	
-				Integer value = picker.getValue();
-				String[] arg = {value.toString()};
-    			dispatchCommand(translateButtonToCommand(buttonId, 0), arg);
-			}
-		});
+    	// API 11 or higher, use native NumberPicker
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
-		// Cancel button
-		builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
+			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(title);
+			final View view = LayoutInflater.from(this).inflate(
+					R.layout.alarm_time_layout, null);
+			builder.setView(view);
+
+			TextView textView = (TextView) view.findViewById(R.id.title_time);
+
+			if (R.id.climateButton == buttonId) {
+				textView.setText(this.getResources().getString(
+						R.string.setClimate));
+			} else if (R.id.engineButton == buttonId) {
+				textView.setText(this.getResources().getString(
+						R.string.setEngine));
 			}
-		});
-		
-		final AlertDialog alert = builder.create();
-		alert.show();
+
+			final NumberPicker picker = (NumberPicker) view
+					.findViewById(R.id.time_picker);
+			picker.setMinValue(0);
+			picker.setMaxValue(99);
+
+			// OK button
+			builder.setPositiveButton(R.string.button_ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+							Integer value = picker.getValue();
+							String[] arg = { value.toString() };
+							dispatchCommand(
+									translateButtonToCommand(buttonId, 0), arg);
+						}
+					});
+
+			// Cancel button
+			builder.setNegativeButton(R.string.button_cancel,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+						}
+					});
+
+			final AlertDialog alert = builder.create();
+			alert.show();
+
+		// API 10 or lower, use custom NumberPicker
+		} else {
+			
+			String description = null;
+			
+			if (R.id.climateButton == buttonId) {
+				mCurrentBtn = R.id.climateButton;
+				description = this.getResources().getString(R.string.setClimate);
+			} else if (R.id.engineButton == buttonId) {
+				mCurrentBtn = R.id.engineButton;
+				description = this.getResources().getString(R.string.setEngine);
+			}
+
+			NumberPickerDialog dialog = new NumberPickerDialog(this, -1, 0, R.layout.alarm_time_eclair_layout, description);
+			dialog.setButton(NumberPickerDialog.BUTTON_POSITIVE, this.getText(R.string.button_ok), dialog);
+			dialog.setButton(NumberPickerDialog.BUTTON_NEGATIVE, this.getText(R.string.button_cancel), (OnClickListener) null);
+			dialog.setTitle(title);
+			dialog.setRange(1, 0, 99);
+            dialog.setOnNumberSetListener(this);
+
+            dialog.show();
+		}
     }
     
     /**
@@ -1047,39 +1087,86 @@ public class MainActivity extends TabCompatActivity {
      * @param title
      * @param buttonId
      */
-    private void askForTimeAndSpeed(String title, final int buttonId) {
-    	
-    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setTitle(title);
-    	final View view = LayoutInflater.from(this).inflate(R.layout.alarm_time_speed_layout, null);
-		builder.setView(view);
-		
-		final NumberPicker speedPicker = (NumberPicker) view.findViewById(R.id.speed_picker);
-		speedPicker.setMinValue(20);
-		speedPicker.setMaxValue(999);
-		
-		final NumberPicker timePicker = (NumberPicker) view.findViewById(R.id.time_speed_picker);
-		timePicker.setMinValue(0);
-		timePicker.setMaxValue(99);
-		
-		// OK button
-		builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {	
-				Integer speedValue = speedPicker.getValue();
-				Integer timeValue = timePicker.getValue();				
-				String[] arg = {speedValue.toString(), timeValue.toString()};				
-    			dispatchCommand(translateButtonToCommand(buttonId, 0), arg);
-			}
-		});
+	private void askForTimeAndSpeed(String title, final int buttonId) {
 
-		// Cancel button
-		builder.setNegativeButton(R.string.button_cancel, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
-			}
-		});
-    	
-		final AlertDialog alert = builder.create();
-		alert.show();
+		// API 11 or higher, use native NumberPicker
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+
+			final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(title);
+			final View view = LayoutInflater.from(this).inflate(
+					R.layout.alarm_time_speed_layout, null);
+			builder.setView(view);
+
+			final NumberPicker speedPicker = (NumberPicker) view
+					.findViewById(R.id.speed_picker);
+			speedPicker.setMinValue(20);
+			speedPicker.setMaxValue(999);
+
+			final NumberPicker timePicker = (NumberPicker) view
+					.findViewById(R.id.time_speed_picker);
+			timePicker.setMinValue(0);
+			timePicker.setMaxValue(99);
+
+			// OK button
+			builder.setPositiveButton(R.string.button_ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+							Integer speedValue = speedPicker.getValue();
+							Integer timeValue = timePicker.getValue();
+							String[] arg = { speedValue.toString(),
+									timeValue.toString() };
+							dispatchCommand(
+									translateButtonToCommand(buttonId, 0), arg);
+						}
+					});
+
+			// Cancel button
+			builder.setNegativeButton(R.string.button_cancel,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,
+								int whichButton) {
+						}
+					});
+
+			final AlertDialog alert = builder.create();
+			alert.show();
+
+		// API 10 or lower, use custom NumberPicker
+		} else {
+			
+			mCurrentBtn = buttonId;
+			
+			NumberPickerDialog dialog = new NumberPickerDialog(this, -1, 0, R.layout.alarm_time_speed_eclair_layout, null);
+			dialog.setButton(NumberPickerDialog.BUTTON_POSITIVE, this.getText(R.string.button_ok), dialog);
+			dialog.setButton(NumberPickerDialog.BUTTON_NEGATIVE, this.getText(R.string.button_cancel), (OnClickListener) null);
+			dialog.setTitle(title);
+			dialog.setRange(1, 0, 99);
+			dialog.setRange(2, 20, 999);			
+            dialog.setOnNumberSetListener(this);
+
+            dialog.show();
+
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public void onNumberSet(NumberPickerDialog pickerDialog, Integer number1, Integer number2) {
+
+		if (mCurrentBtn == R.id.climateButton) {
+			String[] arg = { number1.toString() };
+			dispatchCommand(translateButtonToCommand(R.id.climateButton, 0), arg);
+		} else if (mCurrentBtn == R.id.engineButton) {
+			String[] arg = { number1.toString() };
+			dispatchCommand(translateButtonToCommand(R.id.engineButton, 0), arg);
+		} else if (mCurrentBtn == R.id.speedButton) {
+			String[] arg = { number2.toString(),number1.toString() };
+			dispatchCommand(translateButtonToCommand(R.id.speedButton, 0), arg);
+		}
+		
     }
 
 }

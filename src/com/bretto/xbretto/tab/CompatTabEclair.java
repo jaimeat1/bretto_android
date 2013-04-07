@@ -1,6 +1,6 @@
 // Copyright 2012 Google Inc. All Rights Reserved.
 
-package com.provauto.bretto.wcontrol.tab;
+package com.bretto.xbretto.tab;
 
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;

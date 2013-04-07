@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.provauto.bretto.wcontrol;
+package com.bretto.xbretto;
 
-import com.provauto.bretto.wcontrol.fragments.AlarmFragment;
-import com.provauto.bretto.wcontrol.fragments.HomeFragment;
-import com.provauto.bretto.wcontrol.fragments.SystemFragment;
-import com.provauto.bretto.wcontrol.numberpicker.NumberPickerDialog;
-import com.provauto.bretto.wcontrol.tab.*;
-import com.provauto.bretto.wcontrol.R;
+import com.bretto.xbretto.fragments.AlarmFragment;
+import com.bretto.xbretto.fragments.HomeFragment;
+import com.bretto.xbretto.fragments.SystemFragment;
+import com.bretto.xbretto.numberpicker.NumberPickerDialog;
+import com.bretto.xbretto.tab.*;
+import com.bretto.xbretto.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -58,6 +58,7 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class MainActivity extends TabCompatActivity implements NumberPickerDialog.OnNumberSetListener {
 	
+	// Intents identifiers
 	public static final String SMS_SENT = "SMS_SENT";
 	public static final String SMS_DELIVERY = "SMS_DELIVERY";
 	public static final String COMMAND = "COMMAND";
@@ -71,7 +72,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	public static final String PREFERENCES_WIZARD = "PREFERENCES_WIZARD";
 	
 	// Log constant
-	public static final String APP_TAG = "BrettoXControl";
+	public static final String APP_TAG = "X-Bretto";
 	
 	// Alert for app password
 	private AlertDialog mAlertPassword;
@@ -79,7 +80,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	// Flag to ask for password or not: TRUE user comes from app, FALSE user comes from out of app
 	private boolean mSameActivity = false;
 	
-	// Message built by Communicator, for debugging
+	// Message built by Communicator class, used for debugging
 	public static String mMessage;
 	
 	// ID for the current pressed button
@@ -89,7 +90,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	public BroadcastReceiver mBroadcastSMSReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive (Context context, Intent intent) {
-/*
+
         	// Listen to SMS sent event only
         	if (intent.getAction().compareTo(SMS_SENT) == 0) {
         	
@@ -110,7 +111,8 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	        	// SMS successfully sent
 	        	if (getResultCode() == Activity.RESULT_OK){
 	        		Toast.makeText(context, context.getResources().getString(R.string.success_sms), Toast.LENGTH_LONG).show();
-*/	
+	
+/*
 	        		// Show alert with command, debugging version
 	               	AlertDialog.Builder alert = new AlertDialog.Builder(context);
 	            	alert.setTitle("SMS Message");
@@ -120,13 +122,14 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	        			}
 	        		});
 	            	alert.show();
-/*	            	
+*/
+	        		
 	        	// Error sending SMS
 	        	}else{
 	        		Toast.makeText(context, context.getResources().getString(R.string.error_sms), Toast.LENGTH_LONG).show();
 	        	}
         	}
-*/        }
+        }
     };
 	
     @Override
@@ -134,6 +137,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
     	    	
         super.onCreate(savedInstanceState);
      
+        // Create right tabs depending on platform version
         setContentView(R.layout.main);
         TabHelper tabHelper = getTabHelper();
 
@@ -166,17 +170,18 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 		}
 		
         // Set preference values, debugging version
+/*
         SharedPreferences preferences = this.getSharedPreferences(APP_TAG, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(PREFERENCES_PASSWORDAPP, "1234");
         editor.putString(PREFERENCES_PASSWORDALARM, "aaaa");
         editor.putString(PREFERENCES_NUMBERALARM, "5554");
         editor.commit();
-
+*/
     }
     
     /**
-     * Shows an error message
+     * Shows a generic error message
      * @param errorMsg message to show
      */
 	private void showError(String errorMsg){
@@ -196,6 +201,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	
 	/**
 	 * Asks for app password when application is open
+	 * @param appPassword password to compare with
 	 */
 	private void askAppPassword(final String appPassword){
 		
@@ -339,14 +345,12 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
     	// First execution, ask for create new password
     	if (showWizard) {
     		
-    		// TODO: uncomment
-    		//showWizardFirstStep();
+    		showWizardFirstStep();
 		
 		// Ask for app password
     	} else if ((appPassword != null) && (mSameActivity == false) && (askPassword)){
     		
-    		// TODO: uncomment
-    		//askAppPassword(appPassword);
+    		askAppPassword(appPassword);
     	}
     	
     	// Use to ask for password or not
@@ -463,7 +467,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	 */
     public void onCommandSelected(View view){
     	
-		// Get phone number for preferences
+		// Get phone number from preferences
 		String number = this.getSharedPreferences(APP_TAG, MODE_PRIVATE).getString(PREFERENCES_NUMBERALARM, "");
     	
 		// If there is no phone number configured, show error to user
@@ -560,9 +564,9 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
     }
     
     /**
-     * Translates the button pressed to a command numeric identifier
-     * @param button
-     * @param optionSelected
+     * Translates the button pressed into a Communicator class command
+     * @param button button pressed
+     * @param optionSelected option selected after pressing button
      * @return
      */
     public int translateButtonToCommand(int button, int optionSelected){
@@ -660,7 +664,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
     }
 
     /**
-     * Dispatches a command through the Communicator class, who sends the SMS
+     * Dispatches a command through the Communicator class, that sends the SMS
      * @param command command identifier
      * @param parameters list of parameters for that command
      */
@@ -960,7 +964,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
     }
     
     /**
-     * 
+     * Alert popup to ask the user for confirmation 
      * @param title
      * @param buttonId
      * @param choice
@@ -1004,7 +1008,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
     }
     
    /**
-    * Shows a alert dialog to ask for a time value
+    * Alert dialog to ask for a time value. The picker depends on platform version
     * @param title
     * @param buttonId
     */
@@ -1032,7 +1036,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 
 			final NumberPicker picker = (NumberPicker) view
 					.findViewById(R.id.time_picker);
-			picker.setMinValue(0);
+			picker.setMinValue(1);
 			picker.setMaxValue(99);
 
 			// OK button
@@ -1075,7 +1079,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 			dialog.setButton(NumberPickerDialog.BUTTON_POSITIVE, this.getText(R.string.button_ok), dialog);
 			dialog.setButton(NumberPickerDialog.BUTTON_NEGATIVE, this.getText(R.string.button_cancel), (OnClickListener) null);
 			dialog.setTitle(title);
-			dialog.setRange(1, 0, 99);
+			dialog.setRange(1, 1, 99);
             dialog.setOnNumberSetListener(this);
 
             dialog.show();
@@ -1083,7 +1087,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
     }
     
     /**
-     * Shows a alert dialog to ask for a time and speed value
+     * Alert dialog to ask for a time and speed value. The pickers depends on platform version
      * @param title
      * @param buttonId
      */
@@ -1105,7 +1109,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 
 			final NumberPicker timePicker = (NumberPicker) view
 					.findViewById(R.id.time_speed_picker);
-			timePicker.setMinValue(0);
+			timePicker.setMinValue(1);
 			timePicker.setMaxValue(99);
 
 			// OK button
@@ -1142,7 +1146,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 			dialog.setButton(NumberPickerDialog.BUTTON_POSITIVE, this.getText(R.string.button_ok), dialog);
 			dialog.setButton(NumberPickerDialog.BUTTON_NEGATIVE, this.getText(R.string.button_cancel), (OnClickListener) null);
 			dialog.setTitle(title);
-			dialog.setRange(1, 0, 99);
+			dialog.setRange(1, 1, 99);
 			dialog.setRange(2, 20, 999);			
             dialog.setOnNumberSetListener(this);
 
@@ -1152,7 +1156,10 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	}
 
 	/**
-	 * 
+	 * Called after user has selected a value with the custom NumberPicker, for platform versions API 10 or lower
+	 * @param pickerDialog the alert dialog used to ask the value
+	 * @param number1 value for picker 1
+	 * @param number2 value for picker 2
 	 */
 	public void onNumberSet(NumberPickerDialog pickerDialog, Integer number1, Integer number2) {
 

@@ -20,7 +20,7 @@
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.provauto.bretto.wcontrol.numberpicker.NumberPickerButton android:id="@+id/increment"
+    <com.bretto.xbretto.numberpicker.NumberPickerButton android:id="@+id/increment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/NumberPickerUpButton" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         style="@style/NumberPickerInputText" />
 
-    <com.provauto.bretto.wcontrol.numberpicker.NumberPickerButton android:id="@+id/decrement"
+    <com.bretto.xbretto.numberpicker.NumberPickerButton android:id="@+id/decrement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/NumberPickerDownButton" />

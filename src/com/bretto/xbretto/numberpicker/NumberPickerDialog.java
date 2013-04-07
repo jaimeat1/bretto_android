@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.provauto.bretto.wcontrol.numberpicker;
+package com.bretto.xbretto.numberpicker;
 
-import com.provauto.bretto.wcontrol.R;
+import com.bretto.xbretto.R;
 
 import android.app.AlertDialog;
 import android.content.Context;

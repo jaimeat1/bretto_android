@@ -1,4 +1,4 @@
-package com.provauto.bretto.wcontrol;
+package com.bretto.xbretto;
 
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
@@ -150,20 +150,20 @@ public class Communicator {
 		}
 
 		// Send SMS
-		//SmsManager.getDefault().sendTextMessage(args[1], null, text, sentIntent, deliveryIntent);
+		SmsManager.getDefault().sendTextMessage(args[1], null, text, sentIntent, deliveryIntent);
 		
-
 		// Log message, debugging version
 		//Log.d(MainActivity.APP_TAG,"Sent SMS to "+args[1]+" with message "+text);
 		// Message to show, debugging version
-		MainActivity.mMessage = "Sent SMS to number "+args[1]+" with message \""+text+"\"";
+		//MainActivity.mMessage = "Sent SMS to number "+args[1]+" with message \""+text+"\"";
 
 		// Send intent, debugging version
+/*
 		try {
 			sentIntent.send();
 		} catch (CanceledException e) {
 			e.printStackTrace();
 		}
-
+*/
 	}
 }

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.provauto.bretto.wcontrol.tab;
+package com.bretto.xbretto.tab;
 
-import com.provauto.bretto.wcontrol.tab.TabHelper;
+import com.bretto.xbretto.tab.TabHelper;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -25,7 +25,7 @@ import android.support.v4.app.FragmentActivity;
  * A base activity that defers tab functionality to a {@link TabHelper}.
  *
  * When building an activity with tabs, extend this class in order to provide compatibility with API
- * level 5 and above. Using this class along with the {@link TabHelper} and {@link com.provauto.bretto.wcontrol.tab.CompatTab}
+ * level 5 and above. Using this class along with the {@link TabHelper} and {@link com.bretto.xbretto.tab.CompatTab}
  * classes, you can build a tab UI that's built using the {@link android.app.ActionBar} on
  * Honeycomb+ and the {@link android.widget.TabWidget} on all older versions.
  *

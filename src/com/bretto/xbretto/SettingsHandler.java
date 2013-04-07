@@ -1,6 +1,6 @@
-package com.provauto.bretto.wcontrol;
+package com.bretto.xbretto;
 
-import com.provauto.bretto.wcontrol.R;
+import com.bretto.xbretto.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

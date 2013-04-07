@@ -1,7 +1,7 @@
-package com.provauto.bretto.wcontrol.fragments;
+package com.bretto.xbretto.fragments;
 
-import com.provauto.bretto.wcontrol.R;
-import com.provauto.bretto.wcontrol.R.layout;
+import com.bretto.xbretto.R;
+import com.bretto.xbretto.R.layout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

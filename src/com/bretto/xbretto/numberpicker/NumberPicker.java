@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.provauto.bretto.wcontrol.numberpicker;
+package com.bretto.xbretto.numberpicker;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -37,7 +37,7 @@ import android.widget.TextView.OnEditorActionListener;
 
 import java.util.Locale;
 
-import com.provauto.bretto.wcontrol.R;
+import com.bretto.xbretto.R;
 
 /**
  * This class has been pulled from the Android platform source code, its an internal widget that hasn't been

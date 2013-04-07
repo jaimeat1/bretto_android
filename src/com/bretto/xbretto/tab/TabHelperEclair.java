@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.provauto.bretto.wcontrol.tab;
+package com.bretto.xbretto.tab;
 
 import android.content.Context;
 import android.os.Bundle;

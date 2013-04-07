@@ -1,12 +1,12 @@
-package com.provauto.bretto.wcontrol.fragments;
+package com.bretto.xbretto.fragments;
 
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
-import com.provauto.bretto.wcontrol.R;
-import com.provauto.bretto.wcontrol.SettingsHandler;
+import com.bretto.xbretto.SettingsHandler;
+import com.bretto.xbretto.R;
 
 public class SettingsFragment extends PreferenceFragment {
 	

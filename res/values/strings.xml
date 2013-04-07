@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Bretto X-Control</string>
+    <string name="app_name">X-Bretto</string>
     <string name="tab_home">Inicio</string>
     <string name="tab_alarm">Alarma</string>
     <string name="tab_system">Sistema</string>
@@ -131,9 +131,9 @@
     <string name="default_pass">1234</string>
 
     <!-- About -->
-    <string name="about_title">Acerca de Bretto X-Control</string>
+    <string name="about_title">Acerca de X-Bretto</string>
     <string name="about_name">Bretto, todos los derechos reservados</string>
     <string name="about_email">contacto@bretto.es</string>
-    <string name="about_version">Bretto X-Control v1.0.0</string>
+    <string name="about_version">X-Bretto v1.0.0</string>
 
 </resources>

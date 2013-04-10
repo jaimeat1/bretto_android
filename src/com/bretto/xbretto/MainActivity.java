@@ -58,7 +58,7 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class MainActivity extends TabCompatActivity implements NumberPickerDialog.OnNumberSetListener {
 	
-	// Intents identifiers
+	// Intents identifiers 
 	public static final String SMS_SENT = "SMS_SENT";
 	public static final String SMS_DELIVERY = "SMS_DELIVERY";
 	public static final String COMMAND = "COMMAND";

@@ -110,8 +110,7 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	        	
 	        	// SMS successfully sent
 	        	if (getResultCode() == Activity.RESULT_OK){
-	        		Toast.makeText(context, context.getResources().getString(R.string.success_sms), Toast.LENGTH_LONG).show();
-	
+	        		Toast.makeText(context, context.getResources().getString(R.string.success_sms), Toast.LENGTH_LONG).show();	
 /*
 	        		// Show alert with command, debugging version
 	               	AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -307,31 +306,13 @@ public class MainActivity extends TabCompatActivity implements NumberPickerDialo
 	 * Fourth and last step in wizard. Show advice about save mode
 	 */
 	private void showWizardFourthStep() {
-		
-	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    
-	    builder.setTitle(getResources().getString(R.string.wizard_fourth_title));
-	    builder.setMessage(getResources().getString(R.string.wizard_save_description));
-	    builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) {
-	            dialog.cancel();
-	        }
-	    });
-	    
-	    mAlertPassword = builder.create();
-	    
-	    // All steps are done, don't show wizard again
-	    mAlertPassword.setOnDismissListener(new DialogInterface.OnDismissListener() {
-	    		@Override
-	    		public void onDismiss(DialogInterface dialog) {
-	    		    	SharedPreferences preferences = getSharedPreferences(APP_TAG, MODE_PRIVATE);
-	    		        SharedPreferences.Editor editor = preferences.edit();
-	    		        editor.putBoolean(PREFERENCES_WIZARD, false);
-	    		        editor.commit();
-	    		   }
-	    });	
-	 
-	    mAlertPassword.show();	
+
+		// All steps are done, don't show wizard again
+		SharedPreferences preferences = getSharedPreferences(APP_TAG, MODE_PRIVATE);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putBoolean(PREFERENCES_WIZARD, false);
+		editor.commit();
+
 	}
     
 	

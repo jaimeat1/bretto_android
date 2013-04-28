@@ -14,7 +14,7 @@
         android:id="@+id/seek_sensibility"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:max="9999"
+        android:max="600"
         android:progress="50"
         android:secondaryProgress="75" />
 

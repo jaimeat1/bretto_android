@@ -126,21 +126,22 @@ public class Communicator {
 		default:
 		}
 
-		// Send SMS
-		SmsManager.getDefault().sendTextMessage(args[1], null, text, sentIntent, deliveryIntent);
-		
-
-		// Log message, debugging version
-		//Log.d(MainActivity.APP_TAG,"Sent SMS to "+args[1]+" with message "+text);
-		// Message to show, debugging version
-		//MainActivity.mMessage = "Sent SMS to number "+args[1]+" with message \""+text+"\"";
-/*
-		// Send intent, debugging version
-		try {
-			sentIntent.send();
-		} catch (CanceledException e) {
-			e.printStackTrace();
+		if (!MainActivity.DEBUG_VERSION) {
+			// Send SMS
+			SmsManager.getDefault().sendTextMessage(args[1], null, text, sentIntent, deliveryIntent);
+		} else {
+			// Log message, debugging version
+			Log.d(MainActivity.APP_TAG,"Sent SMS to "+args[1]+" with message "+text);
+			// Message to show, debugging version
+			MainActivity.mMessage = "Sent SMS to number "+args[1]+" with message \""+text+"\"";
+	
+			// Send intent, debugging version
+			try {
+				sentIntent.send();
+			} catch (CanceledException e) {
+				e.printStackTrace();
+			}
 		}
-*/
+
 	}
 }

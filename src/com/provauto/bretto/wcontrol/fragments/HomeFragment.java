@@ -67,8 +67,9 @@ public class HomeFragment extends Fragment {
 					DisplayMetrics displaymetrics = new DisplayMetrics();
 					mActivity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 					int screenWidth = displaymetrics.widthPixels;
-					Log.d(MainActivity.APP_TAG,"screen width "+screenWidth);
+					
 /*					
+					Log.d(MainActivity.APP_TAG,"screen width "+screenWidth);					
 					int difference = screenWidth - (sensorBtn.getWidth() + locationBtn.getWidth() + saveBtn.getWidth());
 					Log.d(MainActivity.APP_TAG,"difference "+difference);
 					

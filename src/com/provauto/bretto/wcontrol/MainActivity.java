@@ -52,6 +52,8 @@ import android.widget.Toast;
 
 public class MainActivity extends TabCompatActivity {
 	
+	public static final boolean DEBUG_VERSION = false;
+	
 	public static final String SMS_SENT = "SMS_SENT";
 	public static final String SMS_DELIVERY = "SMS_DELIVERY";
 	public static final String COMMAND = "COMMAND";
@@ -98,11 +100,7 @@ public class MainActivity extends TabCompatActivity {
 	        		editor.commit();
 	        	}
 	        	
-	        	// SMS successfully sent
-	        	if (getResultCode() == Activity.RESULT_OK){
-	        		Toast.makeText(context, context.getResources().getString(R.string.success_sms), Toast.LENGTH_LONG).show();
-	
-/*
+	        	if (MainActivity.DEBUG_VERSION) {
 	        		// Show alert with command, debugging version
 	               	AlertDialog.Builder alert = new AlertDialog.Builder(context);
 	            	alert.setTitle("SMS Message");
@@ -112,12 +110,17 @@ public class MainActivity extends TabCompatActivity {
 	        			}
 	        		});
 	            	alert.show();
-*/
-	            	
+	        	}
+	        	
+	        	// SMS successfully sent
+	        	if (getResultCode() == Activity.RESULT_OK){
+	        		Toast.makeText(context, context.getResources().getString(R.string.success_sms), Toast.LENGTH_LONG).show();
+      	
 	        	// Error sending SMS
 	        	}else{
 	        		Toast.makeText(context, context.getResources().getString(R.string.error_sms), Toast.LENGTH_LONG).show();
 	        	}
+
         	}
         }
     };
@@ -903,6 +906,10 @@ public class MainActivity extends TabCompatActivity {
 		builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String sensibility = String.valueOf(seekBar.getProgress());
+				// Sensibility must have always 4 characters, fill with 0
+				while (sensibility.length() < 4){
+					sensibility = "0" + sensibility;
+				}
 				String[] arg = {sensibility};				
     			dispatchCommand(translateButtonToCommand(buttonId, -1), arg);
 			}

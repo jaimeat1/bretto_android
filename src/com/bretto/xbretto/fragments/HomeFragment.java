@@ -136,6 +136,7 @@ public class HomeFragment extends Fragment {
 					ignitionParams.topMargin = ignitionBtnY;
 					ignitionBtn.setLayoutParams(ignitionParams);
 					
+					engineBtn.bringToFront();
 					mLaid = true;
 				}
 				

@@ -472,7 +472,7 @@ public class MainActivity extends TabCompatActivity {
 			});
 	    	alert.show();
 	    	
-	    // There is alarm password and number configured, dispatch command
+	    // There is alarm password and number configured, dispatch command 
 		} else {
     	
     	switch (view.getId()){

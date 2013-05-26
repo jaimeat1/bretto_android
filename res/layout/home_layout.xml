@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -72,29 +72,26 @@
     </LinearLayout>
 
 </LinearLayout>
-
+  
     <Button
         android:id="@+id/sensorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/sensor_state"
-        android:onClick="onCommandSelected"
-        android:visibility="invisible" />
+        android:onClick="onCommandSelected" />
     
     <Button
         android:id="@+id/locationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/location_state"
-        android:onClick="onCommandSelected"
-        android:visibility="invisible" />
+        android:onClick="onCommandSelected" />
         
      <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/save_state"
-        android:onClick="onCommandSelected"
-        android:visibility="invisible" />
+        android:onClick="onCommandSelected" />
 
 </RelativeLayout>

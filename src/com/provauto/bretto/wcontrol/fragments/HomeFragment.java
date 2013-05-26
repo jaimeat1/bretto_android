@@ -1,13 +1,11 @@
 package com.provauto.bretto.wcontrol.fragments;
 
-import com.provauto.bretto.wcontrol.MainActivity;
 import com.provauto.bretto.wcontrol.R;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,13 +66,13 @@ public class HomeFragment extends Fragment {
 					mActivity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 					int screenWidth = displaymetrics.widthPixels;
 					
-/*					
+/*				
 					Log.d(MainActivity.APP_TAG,"screen width "+screenWidth);					
 					int difference = screenWidth - (sensorBtn.getWidth() + locationBtn.getWidth() + saveBtn.getWidth());
 					Log.d(MainActivity.APP_TAG,"difference "+difference);
 					
 					// First, buttons must have same total width than escreen
-					if (difference != 0){
+					if (difference < -30){
 						
 						int offset = difference / 2;
 						
@@ -103,7 +101,8 @@ public class HomeFragment extends Fragment {
 							saveBtn.setLayoutParams(saveParams);
 						}
 					}
-*/					
+*/
+
 					// Then, relocate buttons in the middle of screen
 					
 					View assembleOn = myFragment.getView().findViewById(R.id.assembleOnButton);
@@ -136,6 +135,8 @@ public class HomeFragment extends Fragment {
 					saveParams.leftMargin = saveBtnX;
 					saveParams.topMargin = saveBtnY;
 					saveBtn.setLayoutParams(saveParams);
+					
+					locationBtn.bringToFront();
 					
 					mLaid = true;
 				}
